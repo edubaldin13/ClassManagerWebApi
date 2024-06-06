@@ -7,7 +7,7 @@ namespace class_management_web_api.src.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         [MinLength(3)]
         public string? Name { get; set; }
@@ -24,6 +24,7 @@ namespace class_management_web_api.src.Entities
         [MaxLength(11)]
         [MinLength(9)]
         public string? CPF { get; set; }
+        public Role? Role { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

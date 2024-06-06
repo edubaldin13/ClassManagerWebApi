@@ -7,9 +7,13 @@ namespace class_management_web_api.src.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ClassSubjectId { get; set; }
+        public Guid ClassSubjectId { get; set; }
+        public string Name { get; set; }
+        public Guid TeacherId { get; set; }
         public Teacher? Teacher { get; set; }
         public Student? Student { get; set; }
+        public Guid ManagerId { get; set; }
+        public Manager? Manager { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

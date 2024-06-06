@@ -2,7 +2,7 @@
 {
     public class ClassTime
     {
-        public int ClassTimeId { get; set; }
+        public Guid ClassTimeId { get; set; }
         public DateTime StartingHour { get; set; }
         public DateTime EndingHour { get; set; }
         public string? Duration { get; set; }

@@ -7,7 +7,7 @@ namespace class_management_web_api.src.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RegisterId { get; set; }
+        public Guid RegisterId { get; set; }
         public Guid ActivationKey { get; set; }
         [Required]
         [MinLength(3)]

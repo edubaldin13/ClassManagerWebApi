@@ -7,7 +7,7 @@ namespace class_management_web_api.src.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
         [Required]
         [MinLength(3)]
         public string? Name { get; set; }
@@ -24,7 +24,7 @@ namespace class_management_web_api.src.Entities
         [MinLength(9)]
         public string? CPF { get; set; }
         public string? RA { get; set; }
-        public int ClassSubjectId { get; set; }
+        public Guid ClassSubjectId { get; set; }
         public ClassSubject? ClassSubject { get; set; }
         public string Role { get; set; } = Roles.Student.ToString();
         public DateTime CreatedAt { get; set; }

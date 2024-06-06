@@ -2,6 +2,7 @@
 [*.cs]
 .vs
 obj/
+bin
 #### Estilos de nomenclatura ####
 
 # Regras de nomenclatura

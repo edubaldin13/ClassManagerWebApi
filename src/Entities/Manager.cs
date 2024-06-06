@@ -7,7 +7,7 @@ namespace class_management_web_api.src.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ManagerId { get; set; }
+        public Guid ManagerId { get; set; }
         [Required]
         [MinLength(3)]
         public string? Name { get; set; }
@@ -25,6 +25,7 @@ namespace class_management_web_api.src.Entities
         public string? CPF { get; set; }
         public string? ManagerDoc { get; set; }
         public string Role { get; set; } = Roles.Manager.ToString();
+        public IEnumerable<ClassSubject>? ClassSubjects { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

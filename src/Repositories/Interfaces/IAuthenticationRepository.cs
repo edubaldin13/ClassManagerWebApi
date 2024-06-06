@@ -3,7 +3,7 @@ using class_management_web_api.src.Requests.Authentication;
 
 namespace class_management_web_api.src.Repositories
 {
-    public interface IAuthenticationPostRepository
+    public interface IAuthenticationRepository
     {
         public Task<AuthenticationPostDTO> Authenticate (AuthenticationPostRequest request);
     }

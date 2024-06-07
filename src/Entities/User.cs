@@ -24,7 +24,7 @@ namespace class_management_web_api.src.Entities
         [MaxLength(11)]
         [MinLength(9)]
         public string? CPF { get; set; }
-        public Role? Role { get; set; }
+        public Roles? Role { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

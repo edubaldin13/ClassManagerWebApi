@@ -9,6 +9,7 @@ namespace class_management_web_api.src.Contexts
         public DbSet<Admin> Admins { get; set; }
         public DbSet<ClassSubject> ClassSubjects { get; set; }
         public DbSet<ClassTime> ClassTime { get; set; }
+        public DbSet<GraduationCourse> GraduationCourses { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Principal> Principals { get; set; }
         public DbSet<Register> Registers { get; set; }
@@ -35,7 +36,7 @@ namespace class_management_web_api.src.Contexts
                 CPF = "12345678",
                 Email = "eduarbaldin@gmail.com",
                 Password = "123456",
-                Name = "Admin"
+                Name = "Admin Eduardo"
             });
             //criar user
             modelBuilder.Entity<User>().HasData(
@@ -47,7 +48,7 @@ namespace class_management_web_api.src.Contexts
                 Password = "123456",
                 Name = "Admin",
                 Salt = "y9wrDdai3E=n",
-                Role = Role.Admin,
+                Role = Roles.Admin,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             });
@@ -55,23 +56,45 @@ namespace class_management_web_api.src.Contexts
             modelBuilder.Entity<Teacher>().HasData(
             new Teacher()
             {
-                TeacherId = Guid.Parse("ee6393f2-abfe-47e6-8186-bc08bc4a4cd0"),
+                TeacherId = new Guid("ee6393f2-abfe-47e6-8186-bc08bc4a4cd0"),
                 CPF = "12345678",
-                Email = "eduarbaldin@gmail.com",
+                Email = "johanny@gmail.com",
                 Password = "123456",
-                Name = "Teacher Teste",
-                Role = Role.Teacher.ToString(),
+                Name = "Johanny",
+                Role = Roles.Teacher.ToString(),
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
-            });
+            },
+            new Teacher()
+            {
+                TeacherId = new Guid("d0c7bf7b-efc0-4c63-9c9b-1bfa0e1dd207"),
+                CPF = "12345678",
+                Email = "tiago@gmail.com",
+                Password = "123456",
+                Name = "Tiago",
+                Role = Roles.Teacher.ToString(),
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+            );
             //criar classSubject
             modelBuilder.Entity<Manager>().HasData(
                 new Manager()
                 {
-                    ManagerId = Guid.Parse("97f31c66-6114-487a-a364-fcd2659c01a1"),
+                    ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
                     Name = "Cordenador Teste",
                     CPF = "12345678",
-                    Email = "eduarbaldin@gmail.com",
+                    Email = "teste@gmail.com",
+                    Password = "123456",
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                },
+                new Manager()
+                {
+                    ManagerId = new Guid("61794cec-ba4a-432c-af5e-f58fe07799ac"),
+                    Name = "Pedro",
+                    CPF = "12345678",
+                    Email = "pedro@gmail.com",
                     Password = "123456",
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
@@ -82,9 +105,18 @@ namespace class_management_web_api.src.Contexts
                 new ClassSubject()
                 {
                     ClassSubjectId = Guid.NewGuid(),
-                    Name = "Materia Teste",
-                    ManagerId = Guid.Parse("97f31c66-6114-487a-a364-fcd2659c01a1"),
-                    TeacherId = Guid.Parse("ee6393f2-abfe-47e6-8186-bc08bc4a4cd0"),
+                    Name = "PowerBI",
+                    ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
+                    TeacherId = new Guid("ee6393f2-abfe-47e6-8186-bc08bc4a4cd0"),
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                },
+                new ClassSubject()
+                {
+                    ClassSubjectId = Guid.NewGuid(),
+                    Name = "PowerBI",
+                    ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
+                    TeacherId = new Guid("d0c7bf7b-efc0-4c63-9c9b-1bfa0e1dd207"),
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
                 }

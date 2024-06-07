@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AutoMapper.Configuration.Annotations;
 
 namespace class_management_web_api.src.Entities
 {
@@ -23,9 +24,11 @@ namespace class_management_web_api.src.Entities
         [MaxLength(11)]
         [MinLength(9)]
         public string? CPF { get; set; }
-        public string? ManagerDoc { get; set; }
         public string Role { get; set; } = Roles.Manager.ToString();
+        //disciplinas
         public IEnumerable<ClassSubject>? ClassSubjects { get; set; }
+        //cursos de graduação
+        public IEnumerable<GraduationCourse>? GraduationCourses { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

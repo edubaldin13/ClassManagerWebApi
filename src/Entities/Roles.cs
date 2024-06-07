@@ -2,7 +2,6 @@
 {
     public enum Roles
     {
-        Student,
         Teacher,
         Manager,
         Principal,

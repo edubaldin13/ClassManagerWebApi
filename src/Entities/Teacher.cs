@@ -25,6 +25,8 @@ namespace class_management_web_api.src.Entities
         public string? CPF { get; set; }
         public string? TeacherDoc { get; set; }
         public  IEnumerable<ClassSubject>? ClassSubjects { get; set; }
+        public Guid? GraduationCourseId { get; set; }
+        public GraduationCourse? GraduationCourse { get; set; }
         public string Role { get; set; } = Roles.Teacher.ToString();
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

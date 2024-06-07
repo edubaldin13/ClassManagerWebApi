@@ -18,5 +18,10 @@ namespace class_management_web_api.src.Controllers
         {
             return _managerRepository.GetClassSubjects();
         }
+        // [HttpPost()]
+        // public Task<IEnumerable<ClassSubjectGetDTO>> PostClassSubject()
+        // {
+        //     return _managerRepository.PostClassSubjects();
+        // }
     }
 }

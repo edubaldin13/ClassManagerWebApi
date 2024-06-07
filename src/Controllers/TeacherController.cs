@@ -1,4 +1,5 @@
-﻿using class_management_web_api.src.DTO.Teacher;
+﻿using class_management_web_api.src.DTO;
+using class_management_web_api.src.DTO.Teacher;
 using class_management_web_api.src.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,11 @@ namespace class_management_web_api.src.Controllers
         public Task<IEnumerable<TeacherGetDTO>> GetTeachers()
         {
             return _managerRepository.GetTeachers();
+        }
+        [HttpPatch("{teacherId}/{courseId}")]
+        public Task<GenericResponse> UpdateTeacherCourse([FromRoute] Guid teacherId , [FromRoute] Guid courseId)
+        {
+            return _managerRepository.UpdateTeacherCourse(teacherId, courseId);
         }
     }
 }

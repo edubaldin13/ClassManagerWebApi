@@ -12,7 +12,7 @@ using class_management_web_api.src.Contexts;
 namespace class_management_web_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240605043127_FirstMigration")]
+    [Migration("20240607193022_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -63,11 +63,11 @@ namespace class_management_web_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7675c866-ebc4-4449-ba15-88f33c31f0da"),
+                            Id = new Guid("98011c21-3488-48d2-b76e-d5d36a3c6bb3"),
                             CPF = "12345678",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "eduarbaldin@gmail.com",
-                            Name = "Admin",
+                            Name = "Admin Eduardo",
                             Password = "123456",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -85,6 +85,10 @@ namespace class_management_web_api.Migrations
                     b.Property<Guid>("ManagerId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("TeacherId")
                         .HasColumnType("uniqueidentifier");
 
@@ -98,6 +102,26 @@ namespace class_management_web_api.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("ClassSubjects");
+
+                    b.HasData(
+                        new
+                        {
+                            ClassSubjectId = new Guid("26188154-36fc-41a5-9263-3254fe8b29cc"),
+                            CreatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4342),
+                            ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
+                            Name = "PowerBI",
+                            TeacherId = new Guid("ee6393f2-abfe-47e6-8186-bc08bc4a4cd0"),
+                            UpdatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4344)
+                        },
+                        new
+                        {
+                            ClassSubjectId = new Guid("fbd7278a-278e-437d-93b0-35875b332b9a"),
+                            CreatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4347),
+                            ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
+                            Name = "PowerBI",
+                            TeacherId = new Guid("d0c7bf7b-efc0-4c63-9c9b-1bfa0e1dd207"),
+                            UpdatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4348)
+                        });
                 });
 
             modelBuilder.Entity("class_management_web_api.src.Entities.ClassTime", b =>
@@ -106,16 +130,19 @@ namespace class_management_web_api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("ClassClosingHour")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ClassDuration")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ClassStartingHour")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ClassesQuantity")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndingHour")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("StartingHour")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -127,6 +154,38 @@ namespace class_management_web_api.Migrations
                     b.HasKey("ClassTimeId");
 
                     b.ToTable("ClassTime");
+                });
+
+            modelBuilder.Entity("class_management_web_api.src.Entities.GraduationCourse", b =>
+                {
+                    b.Property<Guid>("GraduationCourseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ClassDuration")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassesQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ManagerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("GraduationCourseId");
+
+                    b.HasIndex("ManagerId");
+
+                    b.ToTable("GraduationCourses");
                 });
 
             modelBuilder.Entity("class_management_web_api.src.Entities.Manager", b =>
@@ -148,9 +207,6 @@ namespace class_management_web_api.Migrations
                         .HasMaxLength(254)
                         .HasColumnType("nvarchar(254)");
 
-                    b.Property<string>("ManagerDoc")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -170,6 +226,30 @@ namespace class_management_web_api.Migrations
                     b.HasKey("ManagerId");
 
                     b.ToTable("Managers");
+
+                    b.HasData(
+                        new
+                        {
+                            ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
+                            CPF = "12345678",
+                            CreatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4318),
+                            Email = "teste@gmail.com",
+                            Name = "Cordenador Teste",
+                            Password = "123456",
+                            Role = "Manager",
+                            UpdatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4319)
+                        },
+                        new
+                        {
+                            ManagerId = new Guid("61794cec-ba4a-432c-af5e-f58fe07799ac"),
+                            CPF = "12345678",
+                            CreatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4321),
+                            Email = "pedro@gmail.com",
+                            Name = "Pedro",
+                            Password = "123456",
+                            Role = "Manager",
+                            UpdatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4322)
+                        });
                 });
 
             modelBuilder.Entity("class_management_web_api.src.Entities.Principal", b =>
@@ -265,55 +345,6 @@ namespace class_management_web_api.Migrations
                     b.ToTable("Registers");
                 });
 
-            modelBuilder.Entity("class_management_web_api.src.Entities.Student", b =>
-                {
-                    b.Property<Guid>("StudentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CPF")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<Guid>("ClassSubjectId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("nvarchar(254)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("nvarchar(254)");
-
-                    b.Property<string>("RA")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("StudentId");
-
-                    b.HasIndex("ClassSubjectId")
-                        .IsUnique();
-
-                    b.ToTable("Student");
-                });
-
             modelBuilder.Entity("class_management_web_api.src.Entities.Teacher", b =>
                 {
                     b.Property<Guid>("TeacherId")
@@ -332,6 +363,9 @@ namespace class_management_web_api.Migrations
                         .IsRequired()
                         .HasMaxLength(254)
                         .HasColumnType("nvarchar(254)");
+
+                    b.Property<Guid?>("GraduationCourseId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -354,7 +388,33 @@ namespace class_management_web_api.Migrations
 
                     b.HasKey("TeacherId");
 
+                    b.HasIndex("GraduationCourseId");
+
                     b.ToTable("Teachers");
+
+                    b.HasData(
+                        new
+                        {
+                            TeacherId = new Guid("ee6393f2-abfe-47e6-8186-bc08bc4a4cd0"),
+                            CPF = "12345678",
+                            CreatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4289),
+                            Email = "johanny@gmail.com",
+                            Name = "Johanny",
+                            Password = "123456",
+                            Role = "Teacher",
+                            UpdatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4290)
+                        },
+                        new
+                        {
+                            TeacherId = new Guid("d0c7bf7b-efc0-4c63-9c9b-1bfa0e1dd207"),
+                            CPF = "12345678",
+                            CreatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4292),
+                            Email = "tiago@gmail.com",
+                            Name = "Tiago",
+                            Password = "123456",
+                            Role = "Teacher",
+                            UpdatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4293)
+                        });
                 });
 
             modelBuilder.Entity("class_management_web_api.src.Entities.User", b =>
@@ -401,15 +461,15 @@ namespace class_management_web_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cd79aed6-ff39-4c43-9ea4-6ca6f404f416"),
+                            Id = new Guid("00121be3-d7ea-44c9-bf85-fad1d644f09e"),
                             CPF = "12345678",
-                            CreatedAt = new DateTime(2024, 6, 5, 4, 31, 25, 489, DateTimeKind.Utc).AddTicks(63),
+                            CreatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4243),
                             Email = "eduarbaldin@gmail.com",
                             Name = "Admin",
                             Password = "123456",
-                            Role = 0,
+                            Role = 3,
                             Salt = "y9wrDdai3E=n",
-                            UpdatedAt = new DateTime(2024, 6, 5, 4, 31, 25, 489, DateTimeKind.Utc).AddTicks(66)
+                            UpdatedAt = new DateTime(2024, 6, 7, 19, 30, 20, 103, DateTimeKind.Utc).AddTicks(4247)
                         });
                 });
 
@@ -432,6 +492,17 @@ namespace class_management_web_api.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("class_management_web_api.src.Entities.GraduationCourse", b =>
+                {
+                    b.HasOne("class_management_web_api.src.Entities.Manager", "Manager")
+                        .WithMany("GraduationCourses")
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
+                });
+
             modelBuilder.Entity("class_management_web_api.src.Entities.Principal", b =>
                 {
                     b.HasOne("class_management_web_api.src.Entities.ClassSubject", "ClassSubject")
@@ -443,25 +514,25 @@ namespace class_management_web_api.Migrations
                     b.Navigation("ClassSubject");
                 });
 
-            modelBuilder.Entity("class_management_web_api.src.Entities.Student", b =>
+            modelBuilder.Entity("class_management_web_api.src.Entities.Teacher", b =>
                 {
-                    b.HasOne("class_management_web_api.src.Entities.ClassSubject", "ClassSubject")
-                        .WithOne("Student")
-                        .HasForeignKey("class_management_web_api.src.Entities.Student", "ClassSubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("class_management_web_api.src.Entities.GraduationCourse", "GraduationCourse")
+                        .WithMany("Teachers")
+                        .HasForeignKey("GraduationCourseId");
 
-                    b.Navigation("ClassSubject");
+                    b.Navigation("GraduationCourse");
                 });
 
-            modelBuilder.Entity("class_management_web_api.src.Entities.ClassSubject", b =>
+            modelBuilder.Entity("class_management_web_api.src.Entities.GraduationCourse", b =>
                 {
-                    b.Navigation("Student");
+                    b.Navigation("Teachers");
                 });
 
             modelBuilder.Entity("class_management_web_api.src.Entities.Manager", b =>
                 {
                     b.Navigation("ClassSubjects");
+
+                    b.Navigation("GraduationCourses");
                 });
 
             modelBuilder.Entity("class_management_web_api.src.Entities.Teacher", b =>

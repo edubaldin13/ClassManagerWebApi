@@ -1,16 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using class_management_web_api.src.Entities;
 
-namespace class_management_web_api.src.Entities
+namespace class_management_web_api.src.Requests
 {
-    public class ClassSubject
+    public class ClassSubjectPostRequest
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ClassSubjectId { get; set; }
         public string Name { get; set; }
         public Guid TeacherId { get; set; }
-        public Teacher? Teacher { get; set; }
         public Guid ManagerId { get; set; }
         public Manager? Manager { get; set; }
         public DateTime CreatedAt { get; set; }

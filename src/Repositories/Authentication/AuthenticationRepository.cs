@@ -35,6 +35,7 @@ namespace class_management_web_api.src.Repositories.Authentication
                 Subject = new ClaimsIdentity(new Claim[]{
                     new Claim(ClaimTypes.Name, record.Name),
                     new Claim(ClaimTypes.Email, record.Email),
+                    new Claim(ClaimTypes.Role, record.Role.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(3),
                 SigningCredentials = new(new SymmetricSecurityKey(salt), SecurityAlgorithms.HmacSha256Signature)

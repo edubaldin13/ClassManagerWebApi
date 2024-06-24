@@ -12,6 +12,7 @@ namespace class_management_web_api.src.Requests
         public string Email { get; set; }
         public string Password { get; set; }
         public string CPF { get; set; }
-        public Roles? Role { get; set; }
+        public String Role { get; set; }
+        public int IsActive { get; set; } = 0;
     }
 }

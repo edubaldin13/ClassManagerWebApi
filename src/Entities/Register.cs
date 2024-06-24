@@ -8,7 +8,7 @@ namespace class_management_web_api.src.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid RegisterId { get; set; }
-        public Guid ActivationKey { get; set; }
+        public Guid? ActivationKey { get; set; }
         [Required]
         [MinLength(3)]
         public string? Name { get; set; }
@@ -28,5 +28,6 @@ namespace class_management_web_api.src.Entities
         public string? Salt { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public int IsActive { get; set;}
     }
 }

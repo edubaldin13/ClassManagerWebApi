@@ -51,6 +51,17 @@ namespace class_management_web_api.src.Contexts
                 Role = Roles.Admin,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
+            },
+            new User(){
+                Id = Guid.NewGuid(),
+                CPF = "12345678",
+                Email = "diretor@gmail.com",
+                Password = "123456",
+                Name = "Diretor Teste",
+                Salt = "y9wrDdai3E=k",
+                Role = Roles.Principal,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
             });
             //criar teacher
             modelBuilder.Entity<Teacher>().HasData(

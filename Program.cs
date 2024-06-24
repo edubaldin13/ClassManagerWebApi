@@ -5,6 +5,7 @@ using class_management_web_api.src.Repositories;
 using class_management_web_api.src.Repositories.Authentication;
 using class_management_web_api.src.Repositories.GraduationCourse;
 using class_management_web_api.src.Repositories.Manager;
+using class_management_web_api.src.Repositories.Register;
 using class_management_web_api.src.Repositories.Teacher;
 using class_management_web_api.src.Repositories.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -47,6 +48,7 @@ builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>(
 builder.Services.AddScoped<IGraduationCourseRepository, GraduationCourseRepository>();
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRegisterRepository, RegisterRepository>();
 builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 var key = builder.Configuration.GetValue<string>("ApiSettings:Secret");

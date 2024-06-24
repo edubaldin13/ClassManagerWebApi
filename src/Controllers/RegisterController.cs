@@ -1,4 +1,7 @@
 using System.Net;
+using class_management_web_api.src.DTO;
+using class_management_web_api.src.DTO.Register;
+using class_management_web_api.src.Repositories;
 using class_management_web_api.src.Requests;
 using Microsoft.AspNetCore.Mvc;
 namespace class_management_web_api.src.Controllers
@@ -7,13 +10,24 @@ namespace class_management_web_api.src.Controllers
     [Route("api/[controller]")]
     public class RegisterController : ControllerBase
     {
-        public RegisterController(){
-
+        private readonly IRegisterRepository _registerRepository;
+        public RegisterController(IRegisterRepository registerRepository){
+            _registerRepository = registerRepository;
         }
         [HttpPost]
-        public Task<HttpStatusCode> RegisterUser([FromBody] RegisterPostRequest request)
+        public Task<GenericResponse> RegisterUser([FromBody] RegisterPostRequest request)
         {
-            return null;
+            return _registerRepository.PostRegisters(request);
+        }
+        [HttpGet()]
+        public Task<IEnumerable<RegisterGetDTO>> GetRegisters()
+        {
+            return _registerRepository.GetRegisters();
+        }
+        [HttpPatch("{id:Guid}")]
+        public Task<GenericResponse> ActivateRegister([FromRoute] Guid id)
+        {
+            return _registerRepository.ActivateRegister(id);
         }
     }
 }

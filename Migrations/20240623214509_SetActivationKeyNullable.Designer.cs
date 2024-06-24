@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using class_management_web_api.src.Contexts;
 
@@ -11,9 +12,11 @@ using class_management_web_api.src.Contexts;
 namespace class_management_web_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240623214509_SetActivationKeyNullable")]
+    partial class SetActivationKeyNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +63,7 @@ namespace class_management_web_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("384d6132-4fe9-44dd-bb89-45cfb302714c"),
+                            Id = new Guid("29e10d80-4701-49cb-b205-5bcc6e0fc245"),
                             CPF = "12345678",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "eduarbaldin@gmail.com",
@@ -103,21 +106,21 @@ namespace class_management_web_api.Migrations
                     b.HasData(
                         new
                         {
-                            ClassSubjectId = new Guid("4d940304-f59c-4bc2-b0d8-352420905db1"),
-                            CreatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6627),
+                            ClassSubjectId = new Guid("ccc68657-6489-4b5a-9419-6af4fd349c30"),
+                            CreatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8221),
                             ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
                             Name = "PowerBI",
                             TeacherId = new Guid("ee6393f2-abfe-47e6-8186-bc08bc4a4cd0"),
-                            UpdatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6628)
+                            UpdatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8222)
                         },
                         new
                         {
-                            ClassSubjectId = new Guid("0cb07996-a222-413b-9487-acd9c8a025f8"),
-                            CreatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6631),
+                            ClassSubjectId = new Guid("3bf73a9c-f58c-4600-b043-bca5df6a352f"),
+                            CreatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8225),
                             ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
                             Name = "PowerBI",
                             TeacherId = new Guid("d0c7bf7b-efc0-4c63-9c9b-1bfa0e1dd207"),
-                            UpdatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6631)
+                            UpdatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8226)
                         });
                 });
 
@@ -229,23 +232,23 @@ namespace class_management_web_api.Migrations
                         {
                             ManagerId = new Guid("97f31c66-6114-487a-a364-fcd2659c01a1"),
                             CPF = "12345678",
-                            CreatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6599),
+                            CreatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8194),
                             Email = "teste@gmail.com",
                             Name = "Cordenador Teste",
                             Password = "123456",
                             Role = "Manager",
-                            UpdatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6601)
+                            UpdatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8195)
                         },
                         new
                         {
                             ManagerId = new Guid("61794cec-ba4a-432c-af5e-f58fe07799ac"),
                             CPF = "12345678",
-                            CreatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6604),
+                            CreatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8198),
                             Email = "pedro@gmail.com",
                             Name = "Pedro",
                             Password = "123456",
                             Role = "Manager",
-                            UpdatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6604)
+                            UpdatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8198)
                         });
                 });
 
@@ -318,9 +321,6 @@ namespace class_management_web_api.Migrations
                         .IsRequired()
                         .HasMaxLength(254)
                         .HasColumnType("nvarchar(254)");
-
-                    b.Property<int>("IsActive")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -397,23 +397,23 @@ namespace class_management_web_api.Migrations
                         {
                             TeacherId = new Guid("ee6393f2-abfe-47e6-8186-bc08bc4a4cd0"),
                             CPF = "12345678",
-                            CreatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6530),
+                            CreatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8166),
                             Email = "johanny@gmail.com",
                             Name = "Johanny",
                             Password = "123456",
                             Role = "Teacher",
-                            UpdatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6531)
+                            UpdatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8166)
                         },
                         new
                         {
                             TeacherId = new Guid("d0c7bf7b-efc0-4c63-9c9b-1bfa0e1dd207"),
                             CPF = "12345678",
-                            CreatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6534),
+                            CreatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8169),
                             Email = "tiago@gmail.com",
                             Name = "Tiago",
                             Password = "123456",
                             Role = "Teacher",
-                            UpdatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6535)
+                            UpdatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8170)
                         });
                 });
 
@@ -461,15 +461,15 @@ namespace class_management_web_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8fed71be-b981-44df-8982-32731cce3b41"),
+                            Id = new Guid("a0776d82-0383-42fc-beae-638db701d0ee"),
                             CPF = "12345678",
-                            CreatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6496),
+                            CreatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8129),
                             Email = "eduarbaldin@gmail.com",
                             Name = "Admin",
                             Password = "123456",
                             Role = 3,
                             Salt = "y9wrDdai3E=n",
-                            UpdatedAt = new DateTime(2024, 6, 23, 21, 54, 56, 812, DateTimeKind.Utc).AddTicks(6497)
+                            UpdatedAt = new DateTime(2024, 6, 23, 21, 45, 7, 808, DateTimeKind.Utc).AddTicks(8132)
                         });
                 });
 

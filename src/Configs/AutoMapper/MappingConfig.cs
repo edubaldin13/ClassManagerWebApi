@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using class_management_web_api.src.DTO.GraduationCourse;
 using class_management_web_api.src.DTO.Manager;
+using class_management_web_api.src.DTO.Register;
 using class_management_web_api.src.DTO.Teacher;
 using class_management_web_api.src.DTO.User;
 using class_management_web_api.src.Entities;
@@ -15,6 +16,7 @@ namespace class_management_web_api.src.Configs.AutoMapper
             CreateMap<GraduationCourse, GraduationCourseGetDTO>().ReverseMap();
             CreateMap<Manager, ManagerGetDTO>().ReverseMap();
             CreateMap<Teacher, TeacherGetDTO>().ReverseMap();
+            CreateMap<Register, RegisterGetDTO>().ReverseMap();
             CreateMap<IEnumerable<GraduationCourse>, IEnumerable<GraduationCourseGetDTO>>().ReverseMap();
             //adicionar os CreateMap(Entidade, Request)
         }

@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 
 namespace class_management_web_api.src.DTO.Teacher
 {
-    public class TeacherGetDTO
+    public class TeacherWithoutCourseGetDTO
     {
         public Guid TeacherId { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
         public string? CPF { get; set; }
-        public string? GraduationCourseName { get; set; }
-        public Guid? GraduationCourseId { get; set; }
     }
 }

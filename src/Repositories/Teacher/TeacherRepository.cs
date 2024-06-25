@@ -26,9 +26,25 @@ namespace class_management_web_api.src.Repositories.Teacher
             _mapper = mapper;
         }
         public async Task<IEnumerable<TeacherGetDTO>> GetTeachers(){
-        var record = await _context.Teachers.Where(r => r.GraduationCourseId.Equals(null)).ToListAsync();
-        var result = _mapper.Map<IEnumerable<TeacherGetDTO>>(record);
+        var record = await _context.Teachers.Where(r => r.GraduationCourseId != null).Include(r => r.GraduationCourse).ToListAsync();
+        var result = new List<TeacherGetDTO>();
+        foreach (var item in record){
+            result.Add(new TeacherGetDTO {
+                CPF = item.CPF,
+                Email = item.Email,
+                Name = item.Name,
+                GraduationCourseName = item.GraduationCourse.Name,
+                GraduationCourseId = item.GraduationCourseId
+            });
+        }
         return result;
+        }
+
+        public async Task<IEnumerable<TeacherWithoutCourseGetDTO>> GetTeachersWithoutCourse()
+        {
+            var record = await _context.Teachers.Where(r => r.GraduationCourseId.Equals(null)).ToListAsync();
+            var result = _mapper.Map<IEnumerable<TeacherWithoutCourseGetDTO>>(record);
+            return result;
         }
 
         public async Task<GenericResponse> UpdateTeacherCourse(Guid courseId, Guid teacherId)

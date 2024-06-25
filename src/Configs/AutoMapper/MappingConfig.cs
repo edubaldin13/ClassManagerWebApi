@@ -16,6 +16,7 @@ namespace class_management_web_api.src.Configs.AutoMapper
             CreateMap<GraduationCourse, GraduationCourseGetDTO>().ReverseMap();
             CreateMap<Manager, ManagerGetDTO>().ReverseMap();
             CreateMap<Teacher, TeacherGetDTO>().ReverseMap();
+            CreateMap<Teacher, TeacherWithoutCourseGetDTO>().ReverseMap();
             CreateMap<Register, RegisterGetDTO>().ReverseMap();
             CreateMap<IEnumerable<GraduationCourse>, IEnumerable<GraduationCourseGetDTO>>().ReverseMap();
             //adicionar os CreateMap(Entidade, Request)

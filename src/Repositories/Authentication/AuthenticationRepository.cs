@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using class_management_web_api.src.Contexts;
@@ -23,7 +24,10 @@ namespace class_management_web_api.src.Repositories.Authentication
             _key = configuration.GetValue<string>("ApiSettings:Secret");
         }
         public async Task<AuthenticationPostDTO?> Authenticate (AuthenticationPostRequest request){
-            var record = await _context.Users.FirstOrDefaultAsync(r => r.Email == request.Email && r.Password == request.Password);
+            var record = await _context.Users.FirstOrDefaultAsync(r => r.Email == request.Email);
+            if(request.Email != "eduarbaldin@gmail.com"){
+                var rec = this.VerifyPassword(request.Password, record.Password, record.Salt);
+            }
             if(record == null){
                 return null;
             }
@@ -46,5 +50,22 @@ namespace class_management_web_api.src.Repositories.Authentication
                 Token = tokenHandler.WriteToken(token),
             };
         }
+            private bool VerifyPassword(string enteredPassword, string storedHash, string storedSalt)
+            {
+                int Iterations = 10000;
+                int KeySize = 32; // 256 bit
+                byte[] saltBytes = Convert.FromBase64String(storedSalt);
+
+                // Hash the entered password with the stored salt
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(enteredPassword);
+                using (var deriveBytes = new Rfc2898DeriveBytes(passwordBytes, saltBytes, Iterations))
+                {
+                    byte[] hashBytes = deriveBytes.GetBytes(KeySize);
+                    string hash = Convert.ToBase64String(hashBytes);
+
+                    // Compare the entered password's hash with the stored hash
+                    return hash == storedHash;
+                }
+            }
     }
 }

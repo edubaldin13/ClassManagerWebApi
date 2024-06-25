@@ -59,8 +59,10 @@ namespace class_management_web_api.src.Repositories.Register
             try
             {
                 var record = await _context.Registers.FirstOrDefaultAsync(r => r.RegisterId == id);
+                //alterar variavel abaixo
                 var teste = this.HashPassword(record.Password);
                 var user = new Entities.User(){
+                    Id = Guid.NewGuid(),
                     Name = record.Name,
                     Email = record.Email,
                     CPF = record.CPF,
@@ -68,6 +70,30 @@ namespace class_management_web_api.src.Repositories.Register
                     Password = teste.hash,
                     Role = Roles.Manager
                 };
+                await _context.Users.AddAsync(user);
+                if(record.Role.ToString() == "Manager"){
+                var manager = new Entities.Manager(){
+                    ManagerId = user.Id,
+                    Name = record.Name,
+                    Email = record.Email,
+                    CPF = record.CPF,
+                    Password = teste.hash,
+                };
+                await _context.Managers.AddAsync(manager);
+                }
+                if(record.Role.ToString() == "Teacher"){
+                var teacher = new Entities.Teacher(){
+                    TeacherId = user.Id,
+                    Name = record.Name,
+                    Email = record.Email,
+                    CPF = record.CPF,
+                    Password = teste.hash,
+                };
+                await _context.AddAsync(teacher);
+                }
+                record.IsActive = 1;
+                _context.Registers.Update(record);
+                await _context.SaveChangesAsync();
                 return new GenericResponse{
                     IsSuccess = true,
                     IsCreated = true
@@ -81,7 +107,7 @@ namespace class_management_web_api.src.Repositories.Register
 
         public async Task<IEnumerable<RegisterGetDTO>> GetRegisters()
         {
-            var record = await _context.Registers.ToListAsync();
+            var record = await _context.Registers.Where(r => r.IsActive.Equals(0)).ToListAsync();
             var result = _mapper.Map<IEnumerable<RegisterGetDTO>>(record);
             return result;
         }

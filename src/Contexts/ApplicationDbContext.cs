@@ -17,6 +17,8 @@ namespace class_management_web_api.src.Contexts
         public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+            .HasIndex(e => e.Email).IsUnique();
             modelBuilder.Entity<Manager>()
             .HasMany(e => e.ClassSubjects)
             .WithOne(e => e.Manager)

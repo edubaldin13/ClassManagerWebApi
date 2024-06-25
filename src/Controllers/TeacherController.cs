@@ -19,6 +19,11 @@ namespace class_management_web_api.src.Controllers
         {
             return _managerRepository.GetTeachers();
         }
+        [HttpGet("no-course")]
+        public Task<IEnumerable<TeacherWithoutCourseGetDTO>> GetTeachersWithoutCourse()
+        {
+            return _managerRepository.GetTeachersWithoutCourse();
+        }
         [HttpPatch("{teacherId}/{courseId}")]
         public Task<GenericResponse> UpdateTeacherCourse([FromRoute] Guid teacherId , [FromRoute] Guid courseId)
         {

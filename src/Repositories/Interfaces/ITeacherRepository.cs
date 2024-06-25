@@ -7,5 +7,6 @@ namespace class_management_web_api.src.Repositories
     {
         public Task<IEnumerable<TeacherGetDTO>> GetTeachers ();
         public Task<GenericResponse> UpdateTeacherCourse(Guid courseId, Guid teacherId);
+        public Task<IEnumerable<TeacherWithoutCourseGetDTO>> GetTeachersWithoutCourse();
     }
 }

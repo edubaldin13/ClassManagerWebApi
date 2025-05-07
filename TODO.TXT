@@ -1,0 +1,8 @@
+- terminar de ajeitar a estrutura do projeto colocando a sollution e o dockerfile fora da hierarquia do src
+- usar o outro projeto como exemplo
+
+
+-metodo criar pode pegar a quantidade de dias do atual mes e do proximo para salvar, e para cada dia criar um registro no banco
+
+ou seja as aulas seram registros que terao 4 por dia preenchidas para cada dia do mes
+- fazer calculo de quantos dao por dia e quantos serao por semestre??

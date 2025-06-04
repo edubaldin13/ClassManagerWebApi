@@ -1,4 +1,6 @@
 ﻿using System.Security.Cryptography;
+using ClassManagementWebApi.Entities;
+using ClassManagementWebApi.Entities.Teacher;
 using ClassManagementWebApi.src.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,7 @@ namespace ClassManagementWebApi.src.Contexts
         public DbSet<Register> Registers { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ClassTime> ClassTimes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
@@ -26,9 +29,7 @@ namespace ClassManagementWebApi.src.Contexts
 
             modelBuilder.Entity<Teacher>()
                 .HasMany(e => e.ClassSubjects)
-                .WithOne(e => e.Teacher)
-                .HasForeignKey(e => e.TeacherId)
-                .HasPrincipalKey(e => e.TeacherId);
+                .WithMany(e => e.Teacher);
 
             modelBuilder.Entity<Admin>()
                 .HasKey(e => e.Id);
@@ -40,10 +41,8 @@ namespace ClassManagementWebApi.src.Contexts
                     .HasForeignKey(cs => cs.ManagerId)
                     .OnDelete(DeleteBehavior.Restrict); // Prevent cascading deletes if needed
 
-                entity.HasOne(cs => cs.Teacher)
-                    .WithMany(t => t.ClassSubjects)
-                    .HasForeignKey(cs => cs.TeacherId)
-                    .OnDelete(DeleteBehavior.Restrict); // Prevent cascading deletes if needed
+                entity.HasMany(cs => cs.Teacher)
+                    .WithMany(t => t.ClassSubjects);
                 });
 
             modelBuilder.Entity<Admin>().HasData(

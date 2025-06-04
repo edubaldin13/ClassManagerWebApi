@@ -3,9 +3,8 @@ using ClassManagementWebApi.src.Configs.AutoMapper;
 using ClassManagementWebApi.src.Contexts;
 using ClassManagementWebApi.src.Repositories;
 using ClassManagementWebApi.src.Repositories.Authentication;
-using ClassManagementWebApi.src.Repositories.GraduationCourse;
 using ClassManagementWebApi.src.Repositories.Manager;
-using ClassManagementWebApi.src.Repositories.Register;
+
 using ClassManagementWebApi.src.Repositories.Teacher;
 using ClassManagementWebApi.src.Repositories.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Npgsql;
+using ClassManagementWebApi.Repositories;
 //using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");

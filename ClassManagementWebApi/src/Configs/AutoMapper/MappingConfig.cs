@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ClassManagementWebApi.Entities.Teacher;
+using ClassManagementWebApi.src.DTO.ClassSubject;
 using ClassManagementWebApi.src.DTO.GraduationCourse;
 using ClassManagementWebApi.src.DTO.Manager;
 using ClassManagementWebApi.src.DTO.Register;
@@ -10,7 +12,8 @@ namespace ClassManagementWebApi.src.Configs.AutoMapper
 {
     public class MappingConfig : Profile
     {
-        public MappingConfig() {
+        public MappingConfig()
+        {
             //adicionar os CreateMap(Entidade, Dto)
             CreateMap<User, UserGetDTO>().ReverseMap();
             CreateMap<GraduationCourse, GraduationCourseGetDTO>().ReverseMap();
@@ -19,7 +22,6 @@ namespace ClassManagementWebApi.src.Configs.AutoMapper
             CreateMap<Teacher, TeacherWithoutCourseGetDTO>().ReverseMap();
             CreateMap<Register, RegisterGetDTO>().ReverseMap();
             CreateMap<IEnumerable<GraduationCourse>, IEnumerable<GraduationCourseGetDTO>>().ReverseMap();
-            //adicionar os CreateMap(Entidade, Request)
         }
     }
 }

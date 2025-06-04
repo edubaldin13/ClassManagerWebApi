@@ -8,10 +8,10 @@ namespace ClassManagementWebApi.src.Requests
 {
     public class GraduationCoursePostRequest
     {
-        public int GraduationCourseId { get; set; }
         public string Name { get; set; }
         public int ManagerId { get; set; }
-        public DateTime Start { get; set; } = DateTime.Now;
-        public DateTime End { get; set; } = DateTime.Now;
+        public DateTime ClassStart { get; set; }
+        public DateTime ClassEnd { get; set; }
+        public int ClassDuration { get; set; }
     }
 }

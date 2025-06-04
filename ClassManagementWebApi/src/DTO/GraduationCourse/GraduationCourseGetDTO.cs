@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using AutoMapper;
+using ClassManagementWebApi.Entities;
 using ClassManagementWebApi.src.Entities;
 namespace ClassManagementWebApi.src.DTO.GraduationCourse
 {
@@ -18,5 +20,8 @@ namespace ClassManagementWebApi.src.DTO.GraduationCourse
         //tempo de duração das aulas, usei int para depoiiis transformar em minutos
         public int ClassDuration { get; set; }
         public IEnumerable<int>? Teachers { get; set; }
+        [Required]
+         public IEnumerable<ClassTime> ClassTimes { get; set; }
+
     }
 }

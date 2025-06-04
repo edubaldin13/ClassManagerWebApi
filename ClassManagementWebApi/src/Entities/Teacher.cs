@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ClassManagementWebApi.src.Entities;
 
-namespace ClassManagementWebApi.src.Entities
+namespace ClassManagementWebApi.Entities.Teacher
 {
     public class Teacher
     {

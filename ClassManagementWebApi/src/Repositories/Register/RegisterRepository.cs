@@ -1,23 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Net;
-using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
+using ClassManagementWebApi.Entities.Teacher;
 using ClassManagementWebApi.src.Contexts;
 using ClassManagementWebApi.src.DTO;
 using ClassManagementWebApi.src.DTO.Register;
 using ClassManagementWebApi.src.Entities;
+using ClassManagementWebApi.src.Repositories;
 using ClassManagementWebApi.src.Requests;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
-namespace ClassManagementWebApi.src.Repositories.Register
+namespace ClassManagementWebApi.Repositories
 {
     public class RegisterRepository : IRegisterRepository
     {
@@ -61,7 +54,7 @@ namespace ClassManagementWebApi.src.Repositories.Register
                 var record = await _context.Registers.FirstOrDefaultAsync(r => r.RegisterId == id);
                 //alterar variavel abaixo
                 var teste = this.HashPassword(record.Password);
-                var user = new Entities.User(){
+                var user = new User(){
                     Id = 0,
                     Name = record.Name,
                     Email = record.Email,
@@ -72,7 +65,7 @@ namespace ClassManagementWebApi.src.Repositories.Register
                 };
                 await _context.Users.AddAsync(user);
                 if(record.Role.ToString() == "Manager"){
-                var manager = new Entities.Manager(){
+                var manager = new Manager(){
                     ManagerId = user.Id,
                     Name = record.Name,
                     Email = record.Email,
@@ -82,7 +75,7 @@ namespace ClassManagementWebApi.src.Repositories.Register
                 await _context.Managers.AddAsync(manager);
                 }
                 if(record.Role.ToString() == "Teacher"){
-                var teacher = new Entities.Teacher(){
+                var teacher = new Teacher(){
                     TeacherId = user.Id,
                     Name = record.Name,
                     Email = record.Email,
@@ -115,7 +108,7 @@ namespace ClassManagementWebApi.src.Repositories.Register
         {
             try
             {
-                var record = new Entities.Register()
+                var record = new Register()
                 {
                     CPF = request.CPF,
                     Email = request.Email,

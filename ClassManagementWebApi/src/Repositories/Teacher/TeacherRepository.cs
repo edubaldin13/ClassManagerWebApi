@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using ClassManagementWebApi.Requests.Teacher;
 using ClassManagementWebApi.src.Contexts;
 using ClassManagementWebApi.src.DTO;
 using ClassManagementWebApi.src.DTO.Teacher;
@@ -15,7 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ClassManagementWebApi.src.Repositories.Teacher
 {
-    public class TeacherRepository : ITeacherRepository
+    public class TeacherRepository : ITeacherRepository 
     {
         private ApplicationDbContext _context;
         private IMapper _mapper;
@@ -47,13 +48,14 @@ namespace ClassManagementWebApi.src.Repositories.Teacher
             return result;
         }
 
-        public async Task<GenericResponse> UpdateTeacherCourse(int courseId, int teacherId)
+        public async Task<GenericResponse> UpdateTeacherCourse(TeacherPostRequest teacherCourse)
         {
             try
             {
-                var record = await _context.Teachers.FirstOrDefaultAsync(r => r.TeacherId.Equals(teacherId));
+                var record = await _context.ClassTimes.FirstOrDefaultAsync(r => r.TeacherIdDay.Equals(teacherCourse.TeacherIdDay) && r.TeacherId.Equals(teacherCourse.TeacherId) && r.GraduationCourseId.Equals(teacherCourse.CourseId));
                 if (record != null){
-                    record.GraduationCourseId = courseId;
+                    // record.GraduationCourseId = teacherCourse.CourseId;
+                    record.TeacherId = teacherCourse.TeacherId;
                     _context.Update(record);
                     await _context.SaveChangesAsync();
                     return new GenericResponse(){

@@ -1,4 +1,5 @@
-﻿using ClassManagementWebApi.src.DTO;
+﻿using ClassManagementWebApi.Requests.Teacher;
+using ClassManagementWebApi.src.DTO;
 using ClassManagementWebApi.src.DTO.Teacher;
 using ClassManagementWebApi.src.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -25,9 +26,9 @@ namespace ClassManagementWebApi.src.Controllers
             return _managerRepository.GetTeachersWithoutCourse();
         }
         [HttpPatch("{teacherId}/{courseId}")]
-        public Task<GenericResponse> UpdateTeacherCourse([FromRoute] int teacherId , [FromRoute] int courseId)
+        public Task<GenericResponse> UpdateTeacherCourse([FromBody] TeacherPostRequest teacherRequest)
         {
-            return _managerRepository.UpdateTeacherCourse(teacherId, courseId);
+            return _managerRepository.UpdateTeacherCourse(teacherRequest);
         }
     }
 }
